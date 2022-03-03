@@ -21,7 +21,10 @@ jobs:
         - uses: actions/upload-artifact@main
           with:
             name: webpack artifacts
-            path: public/
+      - uses: actions/upload-artifact@master
+        with:
+          name: webpack artifacts
+          path: public/
   build:
 
     runs-on: ubuntu-latest
