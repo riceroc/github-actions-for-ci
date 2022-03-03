@@ -10,21 +10,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v2
-        - name: npm install and build webpack
-          run: |
-            npm install
-            npm run build
-        - uses: actions/upload-artifact@main
-          with:
-            name: webpack artifacts
-      - uses: actions/upload-artifact@master
-        with:
-          name: webpack artifacts
-          path: public/
+
   build:
 
     runs-on: ubuntu-latest
@@ -45,3 +31,16 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
+  
+  artifactUpload:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: npm install and build webpack
+        run: |
+          npm install
+          npm run build
+      - uses: actions/upload-artifact@main
+        with:
+          name: webpack artifacts
+          path: public/
